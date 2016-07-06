@@ -1,0 +1,19 @@
+
+CALL MovingAverages(1366098928, 60);
+
+SELECT FROM_UNIXTIME(rd.UnixTimeStamp), rd.AveragePrice, rd.AverageVol, ma.Type, ma.Value FROM RawData rd
+LEFT JOIN
+MovingAverages ma
+ON rd.UnixTimeStamp = ma.UnixTimeStamp
+WHERE
+	rd.UnixTimeStamp <= 1366098928
+AND rd.AverageVol != 0 
+ORDER BY rd.UnixTimeStamp DESC
+LIMIT 200;
+
+
+
+
+
+-- DROP TABLE MovingAverageData;
+-- DROP TABLE CalculatedData
